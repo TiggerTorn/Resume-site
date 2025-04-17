@@ -136,7 +136,8 @@
 <script>
   async function handleEnterClick() {
     try {
-      await fetch("https://puv00t6151.execute-api.ap-southeast-1.amazonaws.com/prod", {
+      // Correct URL for the POST request
+      await fetch("https://puv00t6151.execute-api.ap-southeast-1.amazonaws.com/prod/updateClickCount", {
         method: "POST"
       });
       window.location.href = "Resume.html"; // Go to resume after successful count
