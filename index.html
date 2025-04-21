@@ -136,14 +136,25 @@
 <script>
   async function handleEnterClick() {
     try {
-      // Correct URL for the POST request
-      await fetch("https://puv00t6151.execute-api.ap-southeast-1.amazonaws.com/prod/updateClickCount", {
-        method: "POST"
+      // Step 1: Get public IP
+      const ipRes = await fetch("https://api64.ipify.org?format=json");
+      const ipData = await ipRes.json();
+      const userIP = ipData.ip;
+
+      // Step 2: Send to your new Lambda API endpoint
+      await fetch("https://7g5n52qae7.execute-api.ap-southeast-1.amazonaws.com/prod/SaveClickWithIP_v2", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ ip: userIP })  // Send JSON format with IP
       });
-      window.location.href = "Resume.html"; // Go to resume after successful count
+
+      // Step 3: Redirect
+      window.location.href = "Resume.html";
     } catch (error) {
-      console.error("Failed to update click count:", error);
-      window.location.href = "Resume.html"; // Still go to resume even if counting fails
+      console.error("Click tracking failed:", error);
+      window.location.href = "Resume.html"; // Fallback redirect
     }
   }
 </script>
