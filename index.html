@@ -142,7 +142,7 @@
       const userIP = ipData.ip;
 
       // Step 2: Send to your new Lambda API endpoint
-      await fetch("https://7g5n52qae7.execute-api.ap-southeast-1.amazonaws.com/prod/SaveClickWithIP_v2", {
+      await fetch("https://7g5n52qae7.execute-api.ap-southeast-1.amazonaws.com/prod/click", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
